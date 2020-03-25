@@ -1,0 +1,12 @@
+- edit record in database
+- validate before save
+- DB: migration (Category)
+- DB: seed (Category)
+- Crud Category 
+- using package:
+    + https://laravelcollective.com/docs/6.0/html
+    + https://packagist.org/packages/kris/laravel-form-builder
+    + adminLtE
+- Auth
+- Helper
+- Collection
