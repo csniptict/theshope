@@ -3,15 +3,16 @@
 
 @section('content')
     <h3> Add Product </h3>
+    
     <form method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="name">Product Name</label>
-            <input type="text" class="form-control" id="name" name="name" >
+        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
          </div>
         <div class="form-group">
             <label for="code">Product code</label>
-            <input type="text" class="form-control" id="code" name="code">
+            <input type="text" class="form-control" id="code" name="code" value="{{ old('code') }}">
         </div>
         <div class="form-group">
             <label for="exp">Product EXP</label>

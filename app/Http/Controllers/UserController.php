@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\models\Product;
 
 class UserController extends Controller
 {
@@ -12,6 +13,7 @@ class UserController extends Controller
             ['name'=>'sok','age'=>20],
             ['name'=>'sao','age'=>20]
         ];
+        //return Product::all();
         return view('user.index',['users'=>$tmp]);
     }
 

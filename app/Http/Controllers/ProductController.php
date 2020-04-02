@@ -11,7 +11,7 @@ class ProductController extends Controller
     function index(){
         //return Product::all();
         //return Product::find(1);
-        $prod =Product::all();// select * products;
+        $prod = Product::all();// select * products;
         return view('product.index',['products'=>$prod]);
     }
 // show form 
@@ -31,14 +31,18 @@ class ProductController extends Controller
         if($request->file('imgs')){ // $_FILES['imgs']
             $file = $request->file('imgs');
             $fname= $file->getClientOriginalName();
+            $fname= md5_file($file->getRealPath())."_".$fname;
             $file->move('images',$fname);
-            $product->path= $fname; // will add later 
+            $product->path= "/images/".$fname; // will add later // /images/filename
             echo "fill uploaded ".$fname;
         }
 
-        $product->save();  // store to database
+        if($product->save()){
+            return redirect()->back()->withInput()->with(['message'=>'some messages']);
+        }  // store to database
        //print_r($request->input('name'));
-        return "<br> success";
+        //return "<br> success";
+        return redirect('/products');
     }
 
     function editForm(Request $request, $id){
@@ -69,13 +73,18 @@ class ProductController extends Controller
         if($request->file('imgs')){ // $_FILES['imgs']
             $file = $request->file('imgs');
             $fname= $file->getClientOriginalName();
+            $fname= md5_file($file->getRealPath())."_".$fname;
             $file->move('images',$fname);
-            $product->path= $fname; // will add later 
+            $product->path= "/images/".$fname; // will add later 
             echo "fill uploaded ".$fname;
         }
 
+        //return view('sss', ['xyz'=>$request->input('abc')]);
+        //return view('ss',['datas'=>$request->all()]);
+        // $datas['code'];  
+
         $product->save();
-        echo "edited";
+        return redirect('/products');
     }
 
     function destroy(Request $request){
